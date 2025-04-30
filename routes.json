@@ -1,0 +1,22 @@
+{
+  "routes": [
+    {
+      "listenPort": 25565,
+      "hostname": "mc1.abc.com",
+      "host": "10.0.0.2",
+      "port": 25566
+    },
+    {
+      "listenPort": 25565,
+      "hostname": "mc2.abc.com",
+      "host": "10.0.0.2",
+      "port": 25568
+    },
+    {
+      "listenPort": 27015,
+      "hostname": "gmod.abc.com",
+      "host": "10.0.0.2",
+      "port": 27016
+    }
+  ]
+}

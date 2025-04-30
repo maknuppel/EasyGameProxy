@@ -1,0 +1,55 @@
+﻿@page "/"
+@inject IRouteConfigService RouteService
+@rendermode InteractiveServer
+
+<h3>Routes</h3>
+
+<table class="table">
+    <thead>
+        <tr><th>Hostname</th><th>Host</th><th>Port</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (var route in routes)
+        {
+                <tr>
+                    <td>@route.Hostname</td>
+                    <td>@route.Host</td>
+                    <td>@route.Port</td>
+                    <td>
+                        <button @onclick="() => DeleteRoute(route.Hostname)" class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Add Route</h4>
+<input @bind="newRoute.Hostname" placeholder="Hostname" class="form-control" />
+<input @bind="newRoute.Host" placeholder="Host" class="form-control" />
+<input @bind="newRoute.Port" type="number" placeholder="Port" class="form-control" />
+<button @onclick="AddRoute" class="btn btn-primary mt-2">Add</button>
+
+@code {
+    private List<RouteEntry> routes = new();
+    private RouteEntry newRoute = new();
+
+    protected override void OnInitialized()
+    {
+        routes = RouteService.GetRoutes();
+    }
+
+    private async Task AddRoute()
+    {
+        await RouteService.AddRouteAsync(newRoute);
+        newRoute = new RouteEntry();
+        routes = RouteService.GetRoutes();
+        StateHasChanged();
+    }
+
+    private async Task DeleteRoute(string hostname)
+    {
+        await RouteService.DeleteRouteAsync(hostname);
+        routes = RouteService.GetRoutes();
+        StateHasChanged();
+    }
+}
