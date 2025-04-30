@@ -1,4 +1,5 @@
 using EasyGameProxy.Components;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace EasyGameProxy
 {
@@ -11,6 +12,10 @@ namespace EasyGameProxy
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
+
+            builder.Services.AddDataProtection()
+                .PersistKeysToFileSystem(new DirectoryInfo(Path.Combine(Directory.GetCurrentDirectory(), "keys")))
+                 .SetApplicationName("EasyGameProxy");
 
             builder.Services.AddSingleton<IRouteConfigService, JsonRouteConfigService>();
             builder.Services.AddHostedService<TcpProxyService>();

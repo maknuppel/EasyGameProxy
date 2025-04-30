@@ -4,13 +4,15 @@ namespace EasyGameProxy
 {
     public class JsonRouteConfigService : IRouteConfigService
     {
-        private readonly string _filePath = Path.Combine(AppContext.BaseDirectory, "routes.json");
+        private readonly string _filePath = Path.Combine(Directory.GetCurrentDirectory(), "config", "routes.json");
         private readonly List<RouteEntry> _routes = new();
 
         public JsonRouteConfigService()
         {
+            Console.WriteLine($"[INFO] Looking for file at {_filePath}");
             if (File.Exists(_filePath))
             {
+                Console.WriteLine($"[INFO] File found");
                 var json = File.ReadAllText(_filePath);
                 var root = JsonSerializer.Deserialize<RoutesConfig>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 if (root?.Routes != null)
