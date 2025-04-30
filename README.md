@@ -4,6 +4,8 @@ EasyGameProxy is a simple tool that allows you to reverse proxy TCP connections.
 
 Want to run multiple services on different subdomains without providing weird port numbers? Try this!
 
+Docker Hub: https://hub.docker.com/r/maknuppel/easygameproxy
+
 
 
 ## Installation
