@@ -6,12 +6,13 @@
 
 <table class="table">
     <thead>
-        <tr><th>Hostname</th><th>Host</th><th>Port</th><th></th></tr>
+        <tr><th>ListenPort</th><th>Hostname</th><th>Host</th><th>Port</th><th></th></tr>
     </thead>
     <tbody>
         @foreach (var route in routes)
         {
                 <tr>
+                    <td>@route.ListenPort</td>
                     <td>@route.Hostname</td>
                     <td>@route.Host</td>
                     <td>@route.Port</td>
@@ -24,10 +25,23 @@
 </table>
 
 <h4>Add Route</h4>
-<input @bind="newRoute.Hostname" placeholder="Hostname" class="form-control" />
-<input @bind="newRoute.Host" placeholder="Host" class="form-control" />
-<input @bind="newRoute.Port" type="number" placeholder="Port" class="form-control" />
-<button @onclick="AddRoute" class="btn btn-primary mt-2">Add</button>
+<table>
+    <tr>
+        <th>Listen Port</th>
+        <th>Hostname</th>
+        <th>Host IP</th>
+        <th>Port</th>
+    </tr>
+    <tr>
+        <td><input @bind="newRoute.ListenPort" type="number" placeholder="ListenPort" /></td>
+        <td><input @bind="newRoute.Hostname" placeholder="Hostname" class="form-control" /></td>
+        <td><input @bind="newRoute.Host" placeholder="Host" class="form-control" /></td>
+        <td><input @bind="newRoute.Port" type="number" placeholder="Port" class="form-control" /></td>
+        <td>
+            <button @onclick="AddRoute" class="btn btn-primary mt-2">Add</button>
+        </td>
+    </tr>
+</table>
 
 @code {
     private List<RouteEntry> routes = new();
