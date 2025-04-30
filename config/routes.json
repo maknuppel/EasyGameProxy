@@ -11,12 +11,6 @@
       "hostname": "mc2.abc.com",
       "host": "10.0.0.2",
       "port": 25568
-    },
-    {
-      "listenPort": 27015,
-      "hostname": "gmod.abc.com",
-      "host": "10.0.0.2",
-      "port": 27016
     }
   ]
 }
