@@ -72,3 +72,9 @@ This sample file allows you to route requests coming from a single exposed port,
 ]
 ```
 
+## Coming Soon!
+- UDP Support (with the caveat that you cannot declare multiple services on the same UDP port)
+- Service dashboard with metrics
+- Improved Logging
+- IP Blacklist
+
